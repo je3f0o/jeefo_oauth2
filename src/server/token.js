@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 * File Name   : token.js
 * Created at  : 2020-11-10
-* Updated at  : 2021-04-17
+* Updated at  : 2021-12-22
 * Author      : jeefo
 * Purpose     :
 * Description :
@@ -51,10 +51,9 @@ class OAuth2Token {
         switch (request.body.grant_type) {
             case "password":
                 const {username, password} = request.body;
-                if (! username || ! password) {
-                    throw new InvalidRequest();
-                }
-                const user = await storage.get_user(username, password);
+                if (!username || !password) throw new InvalidRequest();
+
+                const user = await storage.get_user(request);
                 if (user) {
                     return await this.renew_token({user}, storage, options);
                 }
