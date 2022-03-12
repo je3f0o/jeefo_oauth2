@@ -86,6 +86,10 @@ class OAuth2Token {
         const old_token = await storage.get_token({refresh_token});
         if (!old_token) throw new Unauthorized();
 
+        for (const key of ["access_token_lifetime", "refresh_token_lifetime"]) {
+          if (!options[key]) options[key] = old_token[key];
+        }
+
         const new_token = await this.generate_token(null, storage, options);
         await storage.update_token(old_token, new_token, options);
         new_token.type = old_token.type;

@@ -1,6 +1,6 @@
 {
     "name": "@jeefo/oauth2",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "homepage": "https://github.com/je3f0o/jeefo_oauth2",
     "copyright": "2021",
     "description": "A library for OAuth2 Framework",
